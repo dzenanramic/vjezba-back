@@ -4,3 +4,4 @@ pydantic
 rembg
 pillow
 onnxruntime
+python-multipart
