@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
@@ -5,6 +6,8 @@ from io import BytesIO
 from fastapi.responses import StreamingResponse
 from rembg import remove
 from PIL import Image
+
+port = int(os.environ.get("PORT", 8000))
 
 
 app = FastAPI()
@@ -54,3 +57,9 @@ async def upload(img: UploadFile = File(...)):
 
     # Return as image response (PNG by default from rembg)
     return StreamingResponse(output_buffer, media_type="image/png")
+
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=port)
