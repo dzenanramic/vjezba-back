@@ -44,7 +44,7 @@ async def text(word:Message):
     return {"status": "ok", "word": letters}
 
 
-@app.post("/upload/")
+@app.post("/upload")
 async def upload(img: UploadFile = File(...)):
     # Read the file into memory
     input_bytes = await img.read()
